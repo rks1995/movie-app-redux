@@ -11,3 +11,96 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* ============================= navbar component =========================== */
+
+.nav {
+  padding: 20px;
+  background-color: #444;
+}
+
+.nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search, .search-btn {
+  padding: 10px;
+  outline: 0;
+  border: 0;
+}
+
+.search {
+  width: 400px;
+  margin-right: 5px;
+}
+
+.search-btn {
+  background-color: brown;
+  color: #fff;
+}
+
+/* ============================= movie component =========================== */
+
+.movie-list-container {
+  width: 70%;
+  margin: 20px auto 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.movies-tab, .favourite-tab {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.movies-tab:hover, .favourite-tab:hover {
+  background-color: blueviolet;
+  color: #fff;
+  transition: .3s ease-in-out;
+}
+
+.movie-card, .movies-tab, .favourite-tab {
+  box-shadow: 1px 1px 10px #c3c3c3;
+  background-color: #fff;
+}
+
+/* ============================= movie card component =========================== */
+
+.movie-card, .right, .footer {
+  display: flex;
+  
+}
+.movie-card {
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  /* border-radius: 5px; */
+}
+.right {
+  width: 100%;
+  flex-direction: column;
+}
+.right,.footer {
+  justify-content: space-between;
+}
+
+.footer {
+  align-items: center;
+}
+
+.ratings {
+  color: brown;
+}
+
+.add-btn {
+  padding: 10px;
+  border: none;
+  background-color: brown;
+  color: #fff;
+}
