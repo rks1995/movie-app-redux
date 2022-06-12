@@ -5,8 +5,7 @@ import Navbar from './Navbar';
 import MovieCard from './MovieCard';
 
 import { data } from '../data';
-import { addMovies } from '../store';
-import { setShowFavourites } from '../store';
+import { addMovies, setShowFavourites } from '../actions';
 
 function App(props) {
   //useSelector allows you to extract data from the redux store
@@ -15,7 +14,10 @@ function App(props) {
   const dispatch = useDispatch();
 
   //show favourites tells which tab we currently are.
-  const { movies, favourites, showFavourites } = store;
+  const {
+    movies: { movies, favourites, showFavourites },
+    search,
+  } = store;
 
   useEffect(() => {
     console.log('useeffect');

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addFavMovie, unFavMovie } from '../store';
+import { addFavMovie, unFavMovie } from '../actions';
 
 export default function MovieCard(props) {
   const { movie, isMovieFavourite } = props;
