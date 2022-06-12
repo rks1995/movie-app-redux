@@ -6,7 +6,7 @@ import MovieCard from './MovieCard';
 
 import { data } from '../data';
 import { addMovies } from '../store';
-import FavCard from './FavCard';
+import { setShowFavourites } from '../store';
 
 function App(props) {
   //useSelector allows you to extract data from the redux store
@@ -14,7 +14,8 @@ function App(props) {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const { movies, favourites } = store;
+  //show favourites tells which tab we currently are.
+  const { movies, favourites, showFavourites } = store;
 
   useEffect(() => {
     console.log('useeffect');
@@ -29,32 +30,38 @@ function App(props) {
     return true;
   };
 
+  const displayMovies = showFavourites ? favourites : movies;
+
   return (
     <div>
       <Navbar />
       <div className='movie-list-container'>
         <div className='tabs'>
-          <Link to='/' className='movies-tab'>
+          <Link
+            to='/'
+            className={`movies-tab ${!showFavourites && 'active-tabs'}`}
+            onClick={() => dispatch(setShowFavourites(false))}
+          >
             Movies
           </Link>
-          <Link to='favourite' className='favourite-tab'>
+          <Link
+            to='/favourite'
+            className={`favourite-tab ${showFavourites && 'active-tabs'}`}
+            onClick={() => dispatch(setShowFavourites(true))}
+          >
             Favourite
           </Link>
         </div>
         <div className='movies-list'>
-          {props.page === 'favourites'
-            ? favourites.map((movie, index) => {
-                return <FavCard movie={movie} key={index} />;
-              })
-            : movies.map((movie, index) => {
-                return (
-                  <MovieCard
-                    movie={movie}
-                    key={index}
-                    isMovieFavourite={isMovieFavourite}
-                  />
-                );
-              })}
+          {displayMovies.map((movie, index) => {
+            return (
+              <MovieCard
+                movie={movie}
+                key={index}
+                isMovieFavourite={isMovieFavourite}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* ============================= navbar component =========================== */
 
 .nav {
@@ -59,6 +63,11 @@ code {
   cursor: pointer;
 }
 
+.active-tabs {
+  background-color: blueviolet !important;
+  color: #fff;
+}
+
 .movies-tab:hover, .favourite-tab:hover {
   background-color: blueviolet;
   color: #fff;
@@ -98,9 +107,16 @@ code {
   color: brown;
 }
 
-.add-btn {
+.favourite-btn, .unfavourite-btn {
   padding: 10px;
   border: none;
-  background-color: brown;
   color: #fff;
+}
+
+.favourite-btn {
+  background-color:#34B3F1;
+}
+
+.unfavourite-btn {
+  background-color: #FF5D5D;
 }

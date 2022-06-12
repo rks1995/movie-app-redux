@@ -3,12 +3,15 @@ import { createStore } from 'redux';
 var initialState = {
   movies: [],
   favourites: [],
+  showFavourites: false,
 };
 
 // Action types
 const ADD_MOVIES = 'ADD_MOVIES';
-const ADD_FAV = 'ADD_FAV';
-const REMOVE_FAV = 'REMOVE_FAV';
+const ADD_TO_FAVOURITES = 'ADD_TO_FAVOURITES';
+const REMOVE_FROM_FAVOURITES = 'REMOVE_FROM_FAVOURITES';
+const SET_SHOW_FAVOURITES = 'SET_SHOW_FAVOURITES';
+
 //action creators
 function addMovies(movies) {
   return {
@@ -19,15 +22,22 @@ function addMovies(movies) {
 
 function addFavMovie(movie) {
   return {
-    type: ADD_FAV,
+    type: ADD_TO_FAVOURITES,
     movie,
   };
 }
 
 function unFavMovie(movie) {
   return {
-    type: REMOVE_FAV,
+    type: REMOVE_FROM_FAVOURITES,
     movie,
+  };
+}
+
+function setShowFavourites(val) {
+  return {
+    type: SET_SHOW_FAVOURITES,
+    val,
   };
 }
 
@@ -38,17 +48,23 @@ const reducers = (state = initialState, action) => {
         ...state,
         movies: action.movies,
       };
-    case ADD_FAV:
+    case ADD_TO_FAVOURITES:
       return {
         ...state,
         favourites: [...state.favourites, action.movie],
       };
-    case REMOVE_FAV:
+    case REMOVE_FROM_FAVOURITES:
       const { movie } = action;
       const newFavorites = state.favourites.filter((item) => item !== movie);
       return {
         ...state,
         favourites: newFavorites,
+      };
+
+    case SET_SHOW_FAVOURITES:
+      return {
+        ...state,
+        showFavourites: action.val,
       };
 
     default:
@@ -58,4 +74,4 @@ const reducers = (state = initialState, action) => {
 
 const store = createStore(reducers);
 
-export { store, addMovies, addFavMovie, unFavMovie };
+export { store, addMovies, addFavMovie, unFavMovie, setShowFavourites };

@@ -19,14 +19,14 @@ export default function MovieCard(props) {
           <span className='ratings'>{movie.imdbRating}</span>
           {isMovieFavourite(movie) ? (
             <button
-              className='add-btn'
+              className='unfavourite-btn'
               onClick={() => dispatch(unFavMovie(movie))}
             >
               Unfavourite
             </button>
           ) : (
             <button
-              className='add-btn'
+              className='favourite-btn'
               onClick={() => dispatch(addFavMovie(movie))}
             >
               Favourite
