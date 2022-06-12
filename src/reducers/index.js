@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 import {
   ADD_MOVIES,
   ADD_TO_FAVOURITES,
@@ -12,7 +14,7 @@ var initialMovieState = {
 };
 
 //reducer will return a new state and re render the component
-const moviesReducer = (state, action) => {
+const moviesReducer = (state = initialMovieState, action) => {
   switch (action.type) {
     case ADD_MOVIES:
       console.log(action.movies);
@@ -48,20 +50,23 @@ var initialSearchState = {
   result: {},
 };
 
-const searchReducer = (state, action) => {
+const searchReducer = (state = initialSearchState, action) => {
   return state;
 };
 
-var initialRootState = {
-  movies: initialMovieState,
-  search: initialSearchState,
-};
+// var initialRootState = {
+//   movies: initialMovieState,
+//   search: initialSearchState,
+// };
 
-const rootReducer = (state = initialRootState, action) => {
-  return {
-    movies: moviesReducer(state.movies, action),
-    search: searchReducer(state.search, action),
-  };
-};
+// const rootReducer = (state = initialRootState, action) => {
+//   return {
+//     movies: moviesReducer(state.movies, action),
+//     search: searchReducer(state.search, action),
+//   };
+// };
 
-export default rootReducer;
+export default combineReducers({
+  movies: moviesReducer,
+  search: searchReducer,
+});
