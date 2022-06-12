@@ -62,6 +62,9 @@ function App(props) {
               />
             );
           })}
+          {displayMovies.length === 0 && (
+            <div className='no-movies'>No Movies in Favourites!</div>
+          )}
         </div>
       </div>
     </div>

@@ -120,3 +120,8 @@ a {
 .unfavourite-btn {
   background-color: #FF5D5D;
 }
+
+.no-movies {
+  margin-top: 30px;
+  color: lightslategray;
+}

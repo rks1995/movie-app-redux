@@ -12,7 +12,7 @@ const ADD_TO_FAVOURITES = 'ADD_TO_FAVOURITES';
 const REMOVE_FROM_FAVOURITES = 'REMOVE_FROM_FAVOURITES';
 const SET_SHOW_FAVOURITES = 'SET_SHOW_FAVOURITES';
 
-//action creators
+//action creators this function will be called as parameter in dispatch function to trigger reducers
 function addMovies(movies) {
   return {
     type: ADD_MOVIES,
@@ -41,6 +41,7 @@ function setShowFavourites(val) {
   };
 }
 
+//reducer will return a new state and re render the component
 const reducers = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MOVIES:
