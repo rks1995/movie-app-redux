@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './components/App';
 import { store } from './store';
@@ -11,7 +11,10 @@ root.render(
   <Provider store={store}>
     <React.StrictMode>
       <Router>
-        <App />
+        <Routes>
+          <Route path='/' element={<App />} />
+          <Route path='/favourite' element={<App page={'favourites'} />} />
+        </Routes>
       </Router>
     </React.StrictMode>
   </Provider>

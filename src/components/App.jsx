@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import MovieCard from './MovieCard';
-import FavCard from './FavCard';
 
 import { data } from '../data';
 import { addMovies } from '../store';
+import FavCard from './FavCard';
 
-function App() {
+function App(props) {
   //useSelector allows you to extract data from the redux store
   // useDispatch returns a reference to the dispatch function from the Redux store. You may use it to dispatch actions as needed
   const store = useSelector((state) => state);
@@ -42,15 +42,19 @@ function App() {
           </Link>
         </div>
         <div className='movies-list'>
-          {movies.map((movie, index) => {
-            return (
-              <MovieCard
-                movie={movie}
-                key={index}
-                isMovieFavourite={isMovieFavourite}
-              />
-            );
-          })}
+          {props.page === 'favourites'
+            ? favourites.map((movie, index) => {
+                return <FavCard movie={movie} key={index} />;
+              })
+            : movies.map((movie, index) => {
+                return (
+                  <MovieCard
+                    movie={movie}
+                    key={index}
+                    isMovieFavourite={isMovieFavourite}
+                  />
+                );
+              })}
         </div>
       </div>
     </div>

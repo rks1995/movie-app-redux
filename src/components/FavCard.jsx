@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-// import { removeFavMovie } from '../store';
+import { unFavMovie } from '../store';
 
 export default function FavCard(props) {
   const { movie } = props;
@@ -16,7 +16,12 @@ export default function FavCard(props) {
         <div className='title'>{movie.Plot}</div>
         <div className='footer'>
           <span className='ratings'>{movie.imdbRating}</span>
-          <button className='add-btn'>Remove Favourites</button>
+          <button
+            className='add-btn'
+            onClick={() => dispatch(unFavMovie(movie))}
+          >
+            Unfavourites
+          </button>
         </div>
       </div>
     </div>
