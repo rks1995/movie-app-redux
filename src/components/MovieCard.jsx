@@ -1,15 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addFavourites } from '../store';
+import { addFavMovie, unFavMovie } from '../store';
 
 export default function MovieCard(props) {
-  const { movie } = props;
+  const { movie, isMovieFavourite } = props;
+
   const dispatch = useDispatch();
 
-  const addToFav = () => {
-    dispatch(addFavourites(movie));
-  };
   return (
     <div className='movie-card'>
       <div className='left'>
@@ -19,9 +17,21 @@ export default function MovieCard(props) {
         <div className='title'>{movie.Plot}</div>
         <div className='footer'>
           <span className='ratings'>{movie.imdbRating}</span>
-          <button className='add-btn' onClick={addToFav}>
-            Favourites
-          </button>
+          {isMovieFavourite(movie) ? (
+            <button
+              className='add-btn'
+              onClick={() => dispatch(unFavMovie(movie))}
+            >
+              Unfavourite
+            </button>
+          ) : (
+            <button
+              className='add-btn'
+              onClick={() => dispatch(addFavMovie(movie))}
+            >
+              Favourite
+            </button>
+          )}
         </div>
       </div>
     </div>
