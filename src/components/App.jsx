@@ -4,13 +4,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import Navbar from './Navbar';
 import { data } from '../data';
 import MovieCard from './MovieCard';
+import { addMovies } from '../store';
+
 function App() {
+  //useSelector allows you to extract data from the redux store
+  // useDispatch returns a reference to the dispatch function from the Redux store. You may use it to dispatch actions as needed
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  const { movies } = store;
+
   useEffect(() => {
-    dispatch({ type: 'ADD_MOVIES', movies: data });
-  }, []);
+    console.log('useeffect');
+    dispatch(addMovies(data));
+  }, [dispatch]);
 
   return (
     <div>
@@ -21,7 +28,7 @@ function App() {
           <div className='favourite-tab'>Favourite</div>
         </div>
         <div className='movies-list'>
-          {store.map((movie, index) => {
+          {movies.map((movie, index) => {
             return <MovieCard movie={movie} key={index} />;
           })}
         </div>
