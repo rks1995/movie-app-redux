@@ -17,7 +17,6 @@ var initialMovieState = {
 const moviesReducer = (state = initialMovieState, action) => {
   switch (action.type) {
     case ADD_MOVIES:
-      console.log(action.movies);
       return {
         ...state,
         movies: action.movies,

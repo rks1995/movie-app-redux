@@ -6,7 +6,6 @@ export const SET_SHOW_FAVOURITES = 'SET_SHOW_FAVOURITES';
 
 //action creators this function will be called as parameter in dispatch function to trigger reducers
 function addMovies(movies) {
-  console.log(movies);
   return {
     type: ADD_MOVIES,
     movies,
