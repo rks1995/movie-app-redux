@@ -6,6 +6,7 @@ import {
   REMOVE_FROM_FAVOURITES,
   SET_SHOW_FAVOURITES,
   FETCH_MOVIE_API,
+  ADD_MOVIE_TO_LIST,
 } from '../actions';
 
 var initialMovieState = {
@@ -40,6 +41,11 @@ const moviesReducer = (state = initialMovieState, action) => {
         ...state,
         showFavourites: action.val,
       };
+    case ADD_MOVIE_TO_LIST:
+      return {
+        ...state,
+        movies: [action.movie, ...state.movies],
+      };
 
     default:
       return state;
@@ -48,18 +54,26 @@ const moviesReducer = (state = initialMovieState, action) => {
 
 var initialSearchState = {
   result: {},
+  showSearchResult: false,
 };
 
 const searchReducer = (state = initialSearchState, action) => {
-  if (action.type === FETCH_MOVIE_API)
-    return {
-      ...state,
-      result: action.movie,
-    };
-
-  return state;
+  switch (action.type) {
+    case FETCH_MOVIE_API:
+      return {
+        ...state,
+        result: action.movie,
+        showSearchResult: true,
+      };
+    case ADD_MOVIE_TO_LIST:
+      return {
+        ...state,
+        showSearchResult: false,
+      };
+    default:
+      return state;
+  }
 };
-
 // var initialRootState = {
 //   movies: initialMovieState,
 //   search: initialSearchState,

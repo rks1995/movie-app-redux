@@ -5,6 +5,7 @@ export const ADD_TO_FAVOURITES = 'ADD_TO_FAVOURITES';
 export const REMOVE_FROM_FAVOURITES = 'REMOVE_FROM_FAVOURITES';
 export const SET_SHOW_FAVOURITES = 'SET_SHOW_FAVOURITES';
 export const FETCH_MOVIE_API = 'FETCH_MOVIE_API';
+export const ADD_MOVIE_TO_LIST = 'ADD_MOVIE_TO_LIST';
 
 //action creators this function will be called as parameter in dispatch function to trigger reducers
 function addMovies(movies) {
@@ -39,10 +40,13 @@ function handleMovieSearch(movieName) {
   const url = `https://www.omdbapi.com/?apikey=7171195a&t=${movieName}`;
 
   return function thunkFn(dispatch) {
-    axios(url).then((response) => {
-      console.log(response.data);
-      dispatch(updateSearchResult(response.data));
-    });
+    axios(url)
+      .then((response) => {
+        dispatch(updateSearchResult(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 }
 
@@ -52,6 +56,13 @@ function updateSearchResult(movie) {
     movie,
   };
 }
+
+// function updateSearchResult(movie) {
+//   return {
+//     type: FETCH_MOVIE_API_ERROR,
+//     movie,
+//   };
+// }
 
 export {
   addMovies,

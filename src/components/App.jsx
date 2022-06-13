@@ -36,7 +36,7 @@ function App(props) {
 
   return (
     <div>
-      <Navbar />
+      <Navbar search={search} />
       <div className='movie-list-container'>
         <div className='tabs'>
           <Link
