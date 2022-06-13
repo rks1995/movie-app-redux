@@ -5,6 +5,7 @@ import {
   ADD_TO_FAVOURITES,
   REMOVE_FROM_FAVOURITES,
   SET_SHOW_FAVOURITES,
+  FETCH_MOVIE_API,
 } from '../actions';
 
 var initialMovieState = {
@@ -50,6 +51,12 @@ var initialSearchState = {
 };
 
 const searchReducer = (state = initialSearchState, action) => {
+  if (action.type === FETCH_MOVIE_API)
+    return {
+      ...state,
+      result: action.movie,
+    };
+
   return state;
 };
 
