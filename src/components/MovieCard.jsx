@@ -14,7 +14,13 @@ export default function MovieCard(props) {
         <img src={movie.Poster} alt='movie-Poster' width={200} />
       </div>
       <div className='right'>
-        <div className='title'>{movie.Plot}</div>
+        <div className='title'>
+          <h2>
+            {movie.Title} ({movie.Year})
+          </h2>
+          <br />
+          {movie.Plot}
+        </div>
         <div className='footer'>
           <span className='ratings'>{movie.imdbRating}</span>
           {isMovieFavourite(movie) ? (
